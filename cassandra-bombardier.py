@@ -8,7 +8,6 @@ NUMBER_OF_ROWS = int ( sys.argv[1] )
 NUMBER_OF_COLUMNS = int ( sys.argv[2] )
 
 # Connect to Cassandra
-pool = pycassa.connect( 'Keyspace1' )
 pool = pycassa.connect( 'Keyspace1', ['localhost:9160'] )
 
 col_fam = pycassa.ColumnFamily( pool, 'ColumnFamily1' )

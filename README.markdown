@@ -15,12 +15,12 @@ into Cassandra
 
 # Here is How to Play
 
-#### If you have PIP / VirtualEnv installed
+### If you have PIP / VirtualEnv installed
 
 'cd' to the cassandra-bombardier root, and do
 
-```python
-pip install -r requirements
+```bash
+$ pip install -r requirements
 ```
 
 #### OR Install Pycassa Manually

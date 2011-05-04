@@ -7,11 +7,6 @@ if len( sys.argv ) < 3:
 NUMBER_OF_ROWS = int ( sys.argv[1] )
 NUMBER_OF_COLUMNS = int ( sys.argv[2] )
 
-# Connect to Cassandra
-pool = pycassa.connect( 'Keyspace1', ['localhost:9160'] )
-
-col_fam = pycassa.ColumnFamily( pool, 'ColumnFamily1' )
-
 # Create a single row With 'numberOfColumns' columns 
 def createRow( numberOfColumns ):
     row = {}
@@ -31,6 +26,10 @@ def createHugeDataset( howHuge ):
 
     return dataset
 
+# Connect to Cassandra
+pool = pycassa.connect( 'Keyspace1', ['localhost:9160'] )
+# Finding Nemo => navigating to the family
+col_fam = pycassa.ColumnFamily( pool, 'ColumnFamily1' )
 # Batch insert a dataset
 col_fam.batch_insert( createHugeDataset( NUMBER_OF_ROWS ) )
 

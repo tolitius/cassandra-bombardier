@@ -15,9 +15,18 @@ into Cassandra
 
 # Here is How to Play
 
-### Install Pycassa
+#### If you have PIP / VirtualEnv installed
+
+'cd' to the cassandra-bombardier root, and do
+
+```python
+pip install -r requirements
+```
+
+#### OR Install Pycassa Manually
 
 [http://pycassa.github.com/pycassa/index.html](http://pycassa.github.com/pycassa/index.html "How to install Pycassa")
+_( follow the pycassa instructions: you'd also need to install "thrift05")_
 
 ### Start Cassandra ( may need 'sudo' )
 
@@ -67,3 +76,13 @@ user    0m8.622s
 sys     0m0.138s
 ```
 
+### How do I read this output from 'time'?
+
+#### Real 
+is wall clock time - time from start to finish of the call. This is all elapsed time including time slices used by other processes and time the process spends blocked (for example if it is waiting for I/O to complete).
+
+#### User 
+is the amount of CPU time spent in user-mode code (outside the kernel) within the process. This is only actual CPU time used in executing the process. Other processes and time the process spends blocked do not count towards this figure.
+
+#### Sys 
+is the amount of CPU time spent in the kernel within the process. This means executing CPU time spent in system calls within the kernel, as opposed to library code, which is still running in user-space. Like 'user', this is only CPU time used by the process. See below for a brief description of kernel mode (also known as 'supervisor' mode) and the system call mechanism.

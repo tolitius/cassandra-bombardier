@@ -37,7 +37,7 @@ inserting 100000 rows 7 columns each took 11.048162 seconds
 
 ### Multiple Processes
 
-Cassandra was desinged with parallelism in mind, so let's make it happy and use 8 processes to inserting 100,000 rows ( 7 columns each ) in parallel:
+Cassandra was designed with parallelism in mind, so let's make it happy and use 8 processes to inserting 100,000 rows ( 7 columns each ) in parallel:
 
 ```bash
 $ python cassandra-bombardier.py 100000 7 8

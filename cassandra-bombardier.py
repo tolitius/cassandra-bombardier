@@ -1,9 +1,13 @@
 import pycassa
 import sys
 import pprint
-from datetime import datetime 
 
+from datetime import datetime 
 from multiprocessing import Pool
+
+KEY_SPACE = 'Keyspace1'
+HOST = 'localhost:9160'
+COLUMN_FAMILY = 'ColumnFamily1'
 
 if len( sys.argv ) < 3:
     sys.exit( " Usage: %s <number of rows> <number of columns in a single row> [<number of processes>]" % sys.argv[0] )
@@ -11,10 +15,6 @@ if len( sys.argv ) < 3:
 NUMBER_OF_ROWS = int ( sys.argv[1] )
 NUMBER_OF_COLUMNS = int ( sys.argv[2] )
 NUMBER_OF_PROCESSES = 1
-
-KEY_SPACE = 'Keyspace1'
-HOST = 'localhost:9160'
-COLUMN_FAMILY = 'ColumnFamily1'
 
 if len( sys.argv ) > 3:
     NUMBER_OF_PROCESSES = int ( sys.argv[3] )

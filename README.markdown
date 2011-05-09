@@ -1,15 +1,16 @@
 ## What is Cassandra Bombardier?
 
-A simple python bombardier based on [Pycassa](http://pycassa.github.com/pycassa/index.html "Pycassa"), that batch inserts:
+A Python bombardier based on [Pycassa](http://pycassa.github.com/pycassa/index.html "Pycassa"), that batch inserts:
 
   + a custom defined number of rows with 
-  + a custome defined number of columns
+  + a custom defined number of columns
+  + a custom defined number of processes
 
 into Cassandra
   
 ### The goal is to: 
   
-  + optimize Cassandra setup / config to get the best performance
+  + optimize Cassandra setup / config to get the best write performance
   + learn Cassandra and Pycassa
   + go to sleep with geeky pride and digital satisfaction
 
@@ -57,32 +58,27 @@ Whenever you need to delete all the data inserted previously, truncate the famil
 ### Start Bombardiering
 
 ```bash
-$ time python cassandra-bombardier.py
- Usage: cassandra-bombardier.py 'number of rows' 'number of columns in a single row'
-
-real    0m0.132s
-user    0m0.087s
-sys     0m0.041s
+$ python cassandra-bombardier.py
+ Usage: cassandra-bombardier.py <number of rows> <number of columns in a single row> [<number of processes>]
 ```
 
-As you can see from the usage, you need to provide a number of rows and a number of columns to be created for each row
-e.g. Let's shoot 100,000 rows where each row has 7 columns:
+As you can see from the usage, you need to provide a number of rows and a number of columns to be created for each row.
+[ Optionally you can also add a number of processes to insert rows to Cassandra in paralleal. By default, if number of processes is not provided, a single process will be used ]
+
+#### Single Process
+
+Let's start from inserting 100,000 rows where each row has 7 columns:
 
 ```bash
-$ time python cassandra-bombardier.py 100000 7
-
-real    0m11.601s
-user    0m8.622s
-sys     0m0.138s
+$ python cassandra-bombardier.py 100000 7
+inserting 100000 rows 7 columns each took 11.048162 seconds
 ```
 
-### How do I read this output from 'time'?
+#### Multiple Processes
 
-#### Real 
-is wall clock time - time from start to finish of the call. This is all elapsed time including time slices used by other processes and time the process spends blocked (for example if it is waiting for I/O to complete).
+Cassandra was desinged with parallelism in mind, so let's make it happy and use 8 processes to inserting 100,000 rows ( 7 columns each ) in parallel:
 
-#### User 
-is the amount of CPU time spent in user-mode code (outside the kernel) within the process. This is only actual CPU time used in executing the process. Other processes and time the process spends blocked do not count towards this figure.
-
-#### Sys 
-is the amount of CPU time spent in the kernel within the process. This means executing CPU time spent in system calls within the kernel, as opposed to library code, which is still running in user-space. Like 'user', this is only CPU time used by the process. See below for a brief description of kernel mode (also known as 'supervisor' mode) and the system call mechanism.
+```bash
+$ python cassandra-bombardier.py 100000 7 8
+inserting 100000 rows 7 columns each took 6.310905 seconds
+```

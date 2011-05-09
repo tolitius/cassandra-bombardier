@@ -32,7 +32,7 @@ Let's start from inserting 100,000 rows where each row has 7 columns:
 
 ```bash
 $ python cassandra-bombardier.py 100000 7
-inserting 100000 rows 7 columns each took 11.048162 seconds
+inserting 100000 rows 7 columns each, with 1 process(es) => took 11.048162 seconds
 ```
 
 ### Multiple Processes
@@ -41,7 +41,7 @@ Cassandra was designed with parallelism in mind, so let's make it happy and use 
 
 ```bash
 $ python cassandra-bombardier.py 100000 7 8
-inserting 100000 rows 7 columns each took 6.310905 seconds
+inserting 100000 rows 7 columns each, with 8 process(es) => took 6.310905 seconds
 ```
 
 # Here is How to Setup / Configure

@@ -97,4 +97,4 @@ else:
     stop = datetime.now()
 
 took = stop - start
-print "inserting", NUMBER_OF_ROWS, "rows", NUMBER_OF_COLUMNS, "columns each took", took.seconds + took.microseconds / 1E6, "seconds"   
+print "inserting", NUMBER_OF_ROWS, "rows", NUMBER_OF_COLUMNS, "columns each, with", NUMBER_OF_PROCESSES, "process(es) => took", took.seconds + took.microseconds / 1E6, "seconds"   
